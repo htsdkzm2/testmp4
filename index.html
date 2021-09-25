@@ -4,40 +4,43 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>2015 part2</title>
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/plyr/3.4.3/plyr.css"
+    />
     <style>
-      .video_sample {
+      .video-content {
         width: 1000px;
         margin: 20px auto;
       }
-      .video_sample video {
+      .video-content video {
         width: 100%;
       }
     </style>
   </head>
   <body>
-    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script> 
-    <video id="video_smaple" controls auto></video>
+    <div class="video-content">
+      <video
+        id="player"
+      ></video>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/hls.js/0.10.1/hls.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/plyr/3.4.3/plyr.min.js"></script>
     <script>
-        if(Hls.isSupported()) {
-        var video = document.getElementById('video_smaple');//videoタグと同じIDにする
-        var hls = new Hls();
-        hls.loadSource('./tmp/videotest.m3u8'); //ここで.m3u8ファイルを指定
-        hls.attachMedia(video);
-         }
-    </script>
-    <!--<script>
-      var video = document.getElementById('video_sample');
-      var videoSrc = './tmp/videotest.m3u8';
-      if (Hls.isSupported()) {
+      const video = document.querySelector('#player');
+      const videoSrc = './tmp/videotest.m3u8';
+      const hlsCheck = Hls.isSupported();
+      const player = new Plyr(video);
+      if (hlsCheck) {
         var hls = new Hls();
         hls.loadSource(videoSrc);
         hls.attachMedia(video);
-      }
-      else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+        hls.on(Hls.Events.MANIFEST_PARSED, function () {});
+      } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
         video.src = videoSrc;
+        video.addEventListener('loadedmetadata', function () {});
       }
-    </script>-->
+    </script>
   </body>
 </html>
-
