@@ -18,15 +18,15 @@
   <body>
     <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script> 
     <video id="video_smaple" controls auto></video>
-    <!--<script>
+    <script>
         if(Hls.isSupported()) {
         var video = document.getElementById('video_smaple');//videoタグと同じIDにする
         var hls = new Hls();
         hls.loadSource('./tmp/videotest.m3u8'); //ここで.m3u8ファイルを指定
         hls.attachMedia(video);
          }
-    </script>-->
-    <script>
+    </script>
+    <!--<script>
       var video = document.getElementById('video_sample');
       var videoSrc = './tmp/videotest.m3u8';
       if (Hls.isSupported()) {
@@ -37,7 +37,7 @@
       else if (video.canPlayType('application/vnd.apple.mpegurl')) {
         video.src = videoSrc;
       }
-    </script>
+    </script>-->
   </body>
 </html>
 
